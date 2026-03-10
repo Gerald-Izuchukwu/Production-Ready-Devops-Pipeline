@@ -2,3 +2,4 @@ src/node_modules/
 src/.env
 terraform/infrastructure/terraform.tfvars
 terraform/backend/
+terraform/infrastructure/.terraform/
