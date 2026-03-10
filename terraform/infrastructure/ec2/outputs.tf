@@ -1,4 +1,4 @@
-output "vpc_id" {
-  value = aws_vpc.ecs_fargate.id
-}
+# output "ec2_instance_id" {
+#   value = aws_instance.main.id
+# }
 

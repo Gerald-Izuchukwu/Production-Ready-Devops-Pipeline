@@ -12,9 +12,6 @@ variable "app_image" {
   type = string
 }
 
-variable "domain_name" {
-  type = string
-}
 
 variable "db_password" {
   type      = string

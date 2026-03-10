@@ -14,7 +14,6 @@ module "alb" {
   source                = "./alb"
   vpc_id                = module.vpc.vpc_id
   subnet_ids            = module.vpc.public_subnet_ids
-  domain_name           = var.domain_name
   environment           = var.environment
   alb_security_group_id = module.security_groups.alb_security_group_id
 }
@@ -26,6 +25,5 @@ module "ec2" {
   environment          = var.environment
   app_image            = var.app_image
   db_password          = var.db_password
-  domain_name          = var.domain_name
   alb_target_group_arn = module.alb.alb_target_group_arn
 }
