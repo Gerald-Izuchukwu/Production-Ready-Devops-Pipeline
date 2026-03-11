@@ -8,16 +8,16 @@ RUN npm ci --only=production
 
 FROM node:18-alpine AS production
 
-RUN addgroup -S devgroup && adduser -S dev -G devgroup
+RUN addgroup -S devgroup && adduser -S devuser -G devgroup
 
 WORKDIR /app
 
 COPY --from=Builder /app/node_modules ./node_modules
 COPY . .
 
-RUN chown -R dev:devgroup /app
+RUN chown -R devuser:devgroup /app
 
-USER dev
+USER devuser
 
 EXPOSE 3000
 
