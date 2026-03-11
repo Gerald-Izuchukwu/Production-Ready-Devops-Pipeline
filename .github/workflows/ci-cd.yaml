@@ -107,6 +107,17 @@ jobs:
 
       - name: Trigger ASG Instance Refresh
         run: |
+          # Check ASG exists first
+          ASG_EXISTS=$(aws autoscaling describe-auto-scaling-groups \
+            --auto-scaling-group-names production-asg \
+            --query 'AutoScalingGroups | length(@)' \
+            --output text)
+
+          if [ "$ASG_EXISTS" = "0" ]; then
+            echo "ASG does not exist yet. Skipping refresh — run terraform apply first."
+            exit 0
+          fi
+
           aws autoscaling start-instance-refresh \
             --auto-scaling-group-name production-asg \
             --strategy Rolling \
