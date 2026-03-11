@@ -17,3 +17,7 @@ variable "security_group_id" {}
 variable "alb_target_group_arn" {}
 
 variable "subnet_ids" {}
+
+variable "db_name" {}
+
+variable "db_user" {}

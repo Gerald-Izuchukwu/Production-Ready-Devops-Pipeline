@@ -14,5 +14,7 @@ docker run -d \
   --restart unless-stopped \
   -p 3000:3000 \
   -e NODE_ENV=production \
+  -e DB_HOST=${db_host} \
   -e DB_PASSWORD=${db_password} \
+  -e REDIS_PASSWORD=${redis_password} \
   ${app_image}
