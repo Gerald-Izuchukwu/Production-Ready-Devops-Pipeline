@@ -105,7 +105,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Trigger ASG Instance Refresh
+      - name: Deploy - Trigger ASG Instance Refresh
         run: |
           # Check ASG exists first
           ASG_EXISTS=$(aws autoscaling describe-auto-scaling-groups \
@@ -118,13 +118,13 @@ jobs:
             exit 0
           fi
 
+          # Trigger refresh
           aws autoscaling start-instance-refresh \
             --auto-scaling-group-name production-asg \
             --strategy Rolling \
             --preferences '{"MinHealthyPercentage": 50, "InstanceWarmup": 60}'
 
-      - name: Wait for refresh to complete
-        run: |
+          # Wait for refresh to complete
           while true; do
             STATUS=$(aws autoscaling describe-instance-refreshes \
               --auto-scaling-group-name production-asg \
